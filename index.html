@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>破茧 | 竖屏可刷 AI 信息流 Demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app" aria-label="破茧竖屏信息流 Demo">
+      <header class="topbar">
+        <button class="plain-icon" id="openWeekly" aria-label="打开日报">日报</button>
+        <div class="feed-tabs" aria-label="信息流频道">
+          <button>同城</button>
+          <button>关注</button>
+          <button class="active" id="openRecommend">推荐</button>
+          <button id="openPersona">破茧</button>
+        </div>
+      </header>
+
+      <section class="feed" id="feed" aria-label="可上下滑动的视频流">
+        <article class="reel is-active" data-persona="normal" data-video-type="entertainment">
+          <video muted loop playsinline webkit-playsinline preload="metadata" src="videos/美食.mp4"></video>
+          <div class="video-fallback founder"></div>
+          <div class="shade"></div>
+          <div class="copy">
+            <p class="creator">@好好吃饭计划</p>
+            <p class="caption">一人食也可以认真一点。把晚饭做漂亮，今天就没有完全交给算法。</p>
+            <p class="music-line">♪ 原声 · 生活切片</p>
+          </div>
+          <div class="actions" aria-label="视频操作">
+            <button class="avatar-action" aria-label="作者主页"><span class="avatar founder-avatar">食</span><i>+</i></button>
+            <button data-action="like"><strong>♥</strong><span>8.7w</span></button>
+            <button><strong>💬</strong><span>1.2w</span></button>
+            <button><strong>★</strong><span>收藏</span></button>
+            <button><strong>↗</strong><span>分享</span></button>
+            <button class="disc-button" aria-label="音乐"><span></span></button>
+          </div>
+        </article>
+
+        <article class="reel" data-persona="normal" data-video-type="entertainment">
+          <video muted loop playsinline webkit-playsinline preload="metadata" src="videos/小说2.mp4"></video>
+          <div class="video-fallback reader"></div>
+          <div class="shade"></div>
+          <div class="copy">
+            <p class="creator">@慢读十分钟</p>
+            <p class="caption">别急着划走，给一个观点留十秒钟，它会慢慢长出自己的答案。</p>
+            <p class="music-line">♪ 原声 · 普通推荐流</p>
+          </div>
+          <div class="actions" aria-label="视频操作">
+            <button class="avatar-action" aria-label="作者主页"><span class="avatar reader-avatar">读</span><i>+</i></button>
+            <button data-action="like"><strong>♥</strong><span>1.2w</span></button>
+            <button><strong>💬</strong><span>1.8k</span></button>
+            <button><strong>★</strong><span>收藏</span></button>
+            <button><strong>↗</strong><span>分享</span></button>
+            <button class="disc-button" aria-label="音乐"><span></span></button>
+          </div>
+        </article>
+
+        <article class="reel" data-persona="normal" data-video-type="entertainment">
+          <video muted loop playsinline webkit-playsinline preload="metadata" src="videos/剧目.mp4"></video>
+          <div class="video-fallback founder"></div>
+          <div class="shade"></div>
+          <div class="copy">
+            <p class="creator">@是个好剧</p>
+            <p class="caption">今天看了一部很好的剧,给大家分享一下</p>
+            <p class="music-line">♪ 原声 · 生活切片</p>
+          </div>
+          <div class="actions" aria-label="视频操作">
+            <button class="avatar-action" aria-label="作者主页"><span class="avatar founder-avatar">食</span><i>+</i></button>
+            <button data-action="like"><strong>♥</strong><span>8.7w</span></button>
+            <button><strong>💬</strong><span>1.2w</span></button>
+            <button><strong>★</strong><span>收藏</span></button>
+            <button><strong>↗</strong><span>分享</span></button>
+            <button class="disc-button" aria-label="音乐"><span></span></button>
+          </div>
+        </article>
+      </section>
+
+      <nav class="bottom-nav" aria-label="底部导航">
+        <button class="active">首页</button>
+        <button>朋友</button>
+        <button class="create-button">+</button>
+        <button>消息</button>
+        <button>我</button>
+      </nav>
+
+    </main>
+
+    <section class="drawer" id="personaDrawer" aria-hidden="true" aria-label="选择破茧身份">
+      <button class="drawer-backdrop" id="closeDrawer" aria-label="关闭"></button>
+      <div class="drawer-panel role-drawer">
+        <div class="drawer-grip" aria-hidden="true"></div>
+        <button class="icon-button role-close" id="xDrawer" aria-label="关闭">×</button>
+        <div class="role-drawer-head">
+          <h2>选择今日人设</h2>
+          <p>选择你今天想成为的那种人</p>
+        </div>
+
+        <label class="role-search" for="roleSearch">
+          <span aria-hidden="true"></span>
+          <input id="roleSearch" type="search" placeholder="搜索身份、标签或你想看的内容" autocomplete="off" />
+        </label>
+
+        <div class="role-menu" id="roleMenu" hidden>
+          <button type="button" data-role-action="preview">预览此角色示例内容流</button>
+          <button type="button" data-role-action="share">分享此角色卡片给好友</button>
+          <button type="button" data-role-action="customize">自定义标签</button>
+        </div>
+
+        <div class="role-carousel" id="roleCarousel" aria-label="身份卡片横滑区域"></div>
+        <div class="role-dots" id="roleDots" aria-hidden="true"></div>
+
+        <div class="role-editor" id="roleEditor" hidden>
+          <label for="customRoleName">自定义达人标签</label>
+          <div>
+            <input id="customRoleName" maxlength="16" placeholder="例如：Java后端练习生" />
+            <button id="saveRoleName" type="button">保存</button>
+          </div>
+        </div>
+
+        <div class="role-preview-panel" id="rolePreviewPanel" hidden></div>
+
+        <div class="role-actions-bar">
+          <button class="role-secondary-action" id="previewActiveRole" type="button">预览</button>
+          <button class="role-primary-action" id="enableActiveRole" type="button">开启今日人设</button>
+        </div>
+        <p class="role-cooldown" id="roleCooldown">距下次更换还有11h，或消耗1次人生重置卡立即更换......</p>
+        <p class="role-toast" id="roleToast" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="modal" id="weeklyModal" aria-hidden="true" aria-label="身份日报">
+      <button class="drawer-backdrop" id="closeWeekly" aria-label="关闭"></button>
+      <div class="weekly-card">
+        <div class="weekly-clean-head">
+          <p class="eyebrow">日报选型</p>
+          <h2 id="weeklyTitle">今日生成身份</h2>
+          <button class="icon-button" id="xWeeklyClean" aria-label="关闭">×</button>
+        </div>
+        <div class="weekly-body" id="weeklyBody"></div>
+        <div class="weekly-actions">
+          <button class="secondary-button" id="publishWeeklyPersona" type="button">公开显示标签</button>
+          <button class="secondary-button" id="saveWeeklyPersona" type="button">保存为常用身份</button>
+          <button class="secondary-button" id="openPortraitCommunity" type="button">画像社区</button>
+          <button class="primary-button" id="startWeeklyPersona" type="button">按这个身份开启破茧</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="communityModal" aria-hidden="true" aria-label="画像社区">
+      <button class="drawer-backdrop" id="closeCommunity" aria-label="关闭"></button>
+      <div class="community-card">
+        <div class="community-head">
+          <div>
+            <p class="eyebrow">画像社区</p>
+            <h2 id="communityTitle">同标签用户社区</h2>
+            <span id="communityMeta">正在匹配相同画像的用户</span>
+          </div>
+          <button class="icon-button" id="xCommunity" aria-label="关闭">×</button>
+        </div>
+
+        <div class="community-videos" id="communityVideos" aria-label="当前身份高点击视频推荐"></div>
+        <div class="community-news" id="communityNews" aria-label="社区赛事和新闻"></div>
+        <div class="community-members" id="communityMembers" aria-label="同标签用户"></div>
+        <div class="community-chat" id="communityChat" aria-label="社区聊天"></div>
+        <form class="community-input" id="communityForm">
+          <input id="communityMessage" maxlength="80" placeholder="和同标签用户聊聊..." />
+          <button type="submit">发送</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="roles.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
